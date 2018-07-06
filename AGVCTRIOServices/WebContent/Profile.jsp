@@ -13,17 +13,16 @@
 		Statement stmt = null;
 		ResultSet rs = null;
 		
-		if(request.getSession(false)==null){
+		if(request.getSession().getAttribute("name")==null ){
 			
-			out.println("<script type='text/javascript'>");
-			out.println("$(document).ready(function() {");
-			out.println(" document.getElementById('id01').style.display='block';");
-			out.println("});");
-			out.println("</script>");
-			RequestDispatcher rd = request.getRequestDispatcher("HomePage.jsp");
-			rd.include(request, response);
+//				out.println("<script type='text/javascript'>");
+//				out.println("$(document).ready(function() {");
+//				out.println(" document.getElementById('id01').style.display='block';");
+//				out.println("});");
+//				out.println("</script>");
+			RequestDispatcher rd = request.getRequestDispatcher("Login.jsp");
+			rd.forward(request, response);
 		}
-		
 		try {
 			con = new OracalDatabaseConnect().Connect();
 			stmt = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
@@ -70,7 +69,7 @@
 
 				<li class="l1" onclick="doEnq();">Enquiries</li>
 				<li class="l1" onclick="loadProfile();">Profile</li>
-				<li class="l1" onclick="loadHome();">Sign Out</li>
+				<li class="l1"><a href="Signout.jsp">Sign Out</a></li>
 			</ul>
 		</div>
 		

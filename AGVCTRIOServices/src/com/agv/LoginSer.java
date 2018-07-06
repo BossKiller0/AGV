@@ -55,8 +55,9 @@ public class LoginSer extends HttpServlet {
 				getServletContext().setAttribute("UN", request.getParameter("uname"));
 				getServletContext().setAttribute("PS", request.getParameter("psw"));
 				getServletContext().setAttribute("LID", rs.getString("ID"));
-				HttpSession session=request.getSession(true);
-				session.setAttribute("name",request.getParameter("uname"));
+				request.getSession(true);
+				request.getSession().setAttribute("name", "login");
+				request.getSession().setMaxInactiveInterval(10*60);
 				out.println("        swal({");
 				out.println("            title: 'Login SucessFull',");
 				out.println("            type: 'success'");
@@ -65,6 +66,7 @@ public class LoginSer extends HttpServlet {
 				out.println("        });");
 				getServletContext().setAttribute("JSPName", "SigEnq.jsp");
 			}else {
+				getServletContext().removeAttribute("LID");
 				out.println("document.getElementById('uname').value='" + request.getParameter("uname") + "'");
 				out.println("document.getElementById('psw').value='" + request.getParameter("psw") + "'");
 				out.println("            document.getElementById('id01').style.display='block';");

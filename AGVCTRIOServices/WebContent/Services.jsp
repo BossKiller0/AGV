@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+	<%@ page session="false" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -29,7 +30,7 @@
 		<h1
 			style="position: absolute; color: red; top: 80px; left: 500px; font-family: ConcertOne-Regular; font-size: 40px">WHAT
 			WE OFFER</h1>
-
+		<center>
 		<img src="cssimage/agvser.jpg" alt="logo" align="middle"
 			class=imglog1o height=400 width=500
 			style="position: absolute; top: 150px; left: 180px;">
@@ -89,6 +90,7 @@
 					plans</li>
 			</ul>
 		</div>
+		</center>
 		<div id="id01" class="modal">
 
 		<form class="modal-content animate" action="LoginSer" id=LOGIN method="get"  onsubmit=<%getServletContext().setAttribute("JSPName", "Services.jsp");%>>

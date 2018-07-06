@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+	
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -15,7 +16,7 @@
 
 				<li class="l1" onclick="doEnq();">Enquiries</li>
 				<li class="l1" onclick="loadProfile();">Profile</li>
-				<li class="l1" onclick="loadHome();">Sign Out</li>
+				<li class="l1"><a href="Signout.jsp">Sign Out</a></li>
 			</ul>
 		</div>
 	</div>
@@ -40,7 +41,7 @@
 			<%@ page import="javax.servlet.http.HttpSession"%>
 			<%@ page session="false" %>
 			
-
+			
 								
 			<%
 				Connection con = null;
@@ -48,15 +49,15 @@
 				ResultSet rs = null;
 				
 				
-				if(request.getSession(false)==null){
+				if(request.getSession().getAttribute("name")==null){
 					
-					out.println("<script type='text/javascript'>");
-					out.println("$(document).ready(function() {");
-					out.println(" document.getElementById('id01').style.display='block';");
-					out.println("});");
-					out.println("</script>");
-					RequestDispatcher rd = request.getRequestDispatcher("HomePage.jsp");
-					rd.include(request, response);
+// 					out.println("<script type='text/javascript'>");
+// 					out.println("$(document).ready(function() {");
+// 					out.println(" document.getElementById('id01').style.display='block';");
+// 					out.println("});");
+// 					out.println("</script>");
+					RequestDispatcher rd = request.getRequestDispatcher("Login.jsp");
+					rd.forward(request, response);
 				}
 				
 				
