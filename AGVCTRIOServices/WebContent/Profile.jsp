@@ -4,11 +4,25 @@
 <%@ page import="java.io.*,java.util.*,java.sql.*"%>
 		<%@ page import="javax.servlet.http.*,javax.servlet.*"%>
 		<%@ page import="com.agv.OracalDatabaseConnect"%>
+		<%@ page import="javax.servlet.RequestDispatcher"%>
+		<%@ page import="javax.servlet.http.HttpSession"%>
+		<%@ page session="false" %>
 		<%
 		
 		Connection con = null;
 		Statement stmt = null;
 		ResultSet rs = null;
+		
+		if(request.getSession(false)==null){
+			
+			out.println("<script type='text/javascript'>");
+			out.println("$(document).ready(function() {");
+			out.println(" document.getElementById('id01').style.display='block';");
+			out.println("});");
+			out.println("</script>");
+			RequestDispatcher rd = request.getRequestDispatcher("HomePage.jsp");
+			rd.include(request, response);
+		}
 		
 		try {
 			con = new OracalDatabaseConnect().Connect();
@@ -45,7 +59,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Profile</title>
 </head>
 <body>
 	<div class=header>

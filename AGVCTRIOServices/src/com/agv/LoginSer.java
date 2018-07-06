@@ -12,6 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @WebServlet(name = "LoginSer", urlPatterns = {"/LoginSer"})
 public class LoginSer extends HttpServlet {
@@ -54,6 +55,8 @@ public class LoginSer extends HttpServlet {
 				getServletContext().setAttribute("UN", request.getParameter("uname"));
 				getServletContext().setAttribute("PS", request.getParameter("psw"));
 				getServletContext().setAttribute("LID", rs.getString("ID"));
+				HttpSession session=request.getSession(true);
+				session.setAttribute("name",request.getParameter("uname"));
 				out.println("        swal({");
 				out.println("            title: 'Login SucessFull',");
 				out.println("            type: 'success'");
