@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-	
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -20,11 +20,11 @@
 			</ul>
 		</div>
 	</div>
-		<input id="user" type="hidden" value=""> <input id="email"
-			type="hidden" value=""> <input id="phone" type="hidden"
-			value="">
-			<div>
-			<table id="customers">
+	<input id="user" type="hidden" value="">
+	<input id="email" type="hidden" value="">
+	<input id="phone" type="hidden" value="">
+	<div>
+		<table id="customers">
 			<tr>
 				<th>No</th>
 				<th>UserName</th>
@@ -39,28 +39,26 @@
 			<%@ page import="com.agv.OracalDatabaseConnect"%>
 			<%@ page import="javax.servlet.RequestDispatcher"%>
 			<%@ page import="javax.servlet.http.HttpSession"%>
-			<%@ page session="false" %>
-			
-			
-								
+			<%@ page session="false"%>
+
+
+
 			<%
 				Connection con = null;
 				Statement stmt = null;
 				ResultSet rs = null;
-				
-				
-				if(request.getSession().getAttribute("name")==null){
-					
-// 					out.println("<script type='text/javascript'>");
-// 					out.println("$(document).ready(function() {");
-// 					out.println(" document.getElementById('id01').style.display='block';");
-// 					out.println("});");
-// 					out.println("</script>");
+
+				if (request.getSession().getAttribute("name") == null) {
+
+					// 					out.println("<script type='text/javascript'>");
+					// 					out.println("$(document).ready(function() {");
+					// 					out.println(" document.getElementById('id01').style.display='block';");
+					// 					out.println("});");
+					// 					out.println("</script>");
 					RequestDispatcher rd = request.getRequestDispatcher("Login.jsp");
 					rd.forward(request, response);
 				}
-				
-				
+
 				try {
 					con = new OracalDatabaseConnect().Connect();
 					stmt = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
@@ -90,13 +88,12 @@
 
 				}
 			%>
-			
+
 		</table>
-		</div>
+	</div>
 	</div>
 </body>
 <style>
-
 #customers {
 	position: absolute;
 	top: 100px;
@@ -141,16 +138,16 @@
 }
 
 .header {
-background-image: url(cssimage/walblue.jpg);
+	background-image: url(cssimage/walblue.jpg);
 	background-size: cover;
 	background-attachment: fixed;
 	background-position: center;
 	background-repeat: no-repeat;
-	height:100vh;
+	height: 100vh;
 }
 
 .navbar1 {
-	position:fixed;
+	position: fixed;
 	top: 10px;
 	text-align: center;
 	transition-duration: 1s;
@@ -174,6 +171,7 @@ background-image: url(cssimage/walblue.jpg);
 	height: 50px;
 	font-family: ConcertOne-Regular;
 }
+
 .navbar1 ul li:hover {
 	background: orange;
 }
@@ -205,6 +203,9 @@ background-image: url(cssimage/walblue.jpg);
 	width: auto;
 	padding: 10px 18px;
 	background-color: #f44336;
+}
+a{
+text-decoration: none;
 }
 </style>
 <link rel="stylesheet"
@@ -240,35 +241,35 @@ background-image: url(cssimage/walblue.jpg);
 		// 		 alert("row" + element.parentNode.parentNode.rowIndex + 
 		// 				    " - column" + element.parentNode.cellIndex);
 
-		document.getElementById("user").value = document.getElementById("customers").rows[element.parentNode.parentNode.rowIndex].cells[0].innerHTML;
+		document.getElementById("user").value = document
+				.getElementById("customers").rows[element.parentNode.parentNode.rowIndex].cells[0].innerHTML;
 
-		swal(
-				{
-					title : "Are you sure?",
-					text : "You will not be able to recover this!",
-					type : "warning",
-					showCancelButton : true,
-					confirmButtonColor : '#DD6B55',
-					confirmButtonText : 'Yes, I am sure!',
-					cancelButtonText : "No, cancel it!",
-					closeOnConfirm : false,
-					closeOnCancel : false
-				},
-				function(isConfirm) {
+		swal({
+			title : "Are you sure?",
+			text : "You will not be able to recover this!",
+			type : "warning",
+			showCancelButton : true,
+			confirmButtonColor : '#DD6B55',
+			confirmButtonText : 'Yes, I am sure!',
+			cancelButtonText : "No, cancel it!",
+			closeOnConfirm : false,
+			closeOnCancel : false
+		}, function(isConfirm) {
 
-					if (isConfirm) {
-						document.getElementById("customers").deleteRow(element.parentNode.parentNode.rowIndex);
-						location.href = ("SigEnq.jsp?user="+ document.getElementById("user").value);
-						
-			
-						
-					document.getElementById("user").value=null;
-			
-	      swal("Deleted!", "The Record Was Deleted Sucessfully!","success");
-					} else {
-						swal("Cancelled", "", "error");
-					}
-				});
+			if (isConfirm) {
+				document.getElementById("customers").deleteRow(
+						element.parentNode.parentNode.rowIndex);
+				location.href = ("SigEnq.jsp?user=" + document
+						.getElementById("user").value);
+
+				document.getElementById("user").value = null;
+
+				swal("Deleted!", "The Record Was Deleted Sucessfully!",
+						"success");
+			} else {
+				swal("Cancelled", "", "error");
+			}
+		});
 
 	}
 </script>
