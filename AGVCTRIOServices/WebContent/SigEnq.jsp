@@ -207,6 +207,9 @@
 a{
 text-decoration: none;
 }
+a:hover{
+text-decoration: none;
+}
 </style>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
